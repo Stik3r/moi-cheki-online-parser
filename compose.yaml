@@ -1,0 +1,17 @@
+services:
+  app:
+    container_name: "moi-cheki-online-parser"
+    build:
+      context: .
+
+      # Переменные из файла .env
+      #env_file:
+      #  - .env
+
+      # Вариант 2: передать переменные через Docker Compose
+      #environment:
+      #refreshToken:
+      #sourceDeviceId:
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

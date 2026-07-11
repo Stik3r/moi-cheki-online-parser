@@ -22,7 +22,7 @@ public class ParcerController {
 
     private final MoiChekiOnlineService service;
 
-    @PostMapping("/setToken")
+    @PostMapping("/setRefreshToken")
     public void setRefreshToken(@RequestBody String refreshToken) {
         service.setRefreshToken(refreshToken);
     }
@@ -42,9 +42,9 @@ public class ParcerController {
         return service.getFiscalData(keys);
     }
 
-    @PostMapping("/getJsonFile")
-    public ResponseEntity<byte[]> getJsonFile(@RequestBody List<FiscalDataResponse> fiscalDataResponses) {
-        byte[] data = service.saveToJson(fiscalDataResponses);
+    @PostMapping("/getFiscalDataJson")
+    public ResponseEntity<byte[]> getJsonFile(@RequestBody List<String> keys) {
+        byte[] data = service.saveToJson(keys);
 
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
