@@ -1,0 +1,8 @@
+.git
+.idea
+.env
+target
+*.iml
+1.json
+Dockerfile*
+compose*.yaml
