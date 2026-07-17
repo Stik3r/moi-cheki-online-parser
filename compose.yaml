@@ -5,8 +5,8 @@ services:
       context: .
 
       # Переменные из файла .env
-      #env_file:
-      #  - .env
+    env_file:
+      - .env
 
       # Вариант 2: передать переменные через Docker Compose
       #environment:

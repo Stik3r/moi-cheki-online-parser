@@ -54,7 +54,6 @@ public class MoiChekiOnlineService {
                 receiptSearchRequest
         ));
 
-        System.out.println(receipts);
         return receipts;
     }
 
