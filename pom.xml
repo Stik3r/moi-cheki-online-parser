@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.moichekionline</groupId>
     <artifactId>parcer</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>parcer</name>
     <description>parcer</description>
     <url/>

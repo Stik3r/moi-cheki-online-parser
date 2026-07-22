@@ -91,7 +91,7 @@ public class MoiChekiOnlineService {
 
         try {
             return request.apply("Bearer " + token);
-        } catch (HttpClientErrorException.Unauthorized exception) {
+        } catch (HttpClientErrorException.UnprocessableContent exception) {
             refreshToken();
             return request.apply("Bearer " + token);
         }
