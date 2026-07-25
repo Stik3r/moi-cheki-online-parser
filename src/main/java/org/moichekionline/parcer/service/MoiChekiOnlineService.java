@@ -3,6 +3,7 @@ package org.moichekionline.parcer.service;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.moichekionline.parcer.client.MoiChekiOnlineClient;
 import org.moichekionline.parcer.models.dto.moiChekiOnline.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,7 @@ import java.util.function.Function;
 @Service
 @RequiredArgsConstructor
 @Setter
+@Slf4j
 public class MoiChekiOnlineService {
 
     private final MoiChekiOnlineClient moiChekiOnlineClient;
@@ -49,22 +51,26 @@ public class MoiChekiOnlineService {
 
     public ReceiptSearchResponse getReceipts(ReceiptSearchRequest receiptSearchRequest) {
 
-        var receipts = executeWithToken(authorization -> moiChekiOnlineClient.getReceipts(
+        return executeWithToken(authorization -> moiChekiOnlineClient.getReceipts(
                 "Bearer " + token,
                 receiptSearchRequest
         ));
-
-        return receipts;
     }
 
+    @SneakyThrows
     public List<FiscalDataResponse> getFiscalData(List<String> keys) {
         List<FiscalDataResponse> result = new ArrayList<>();
         for (String key : keys) {
-            result.add(executeWithToken(authorization ->
-                    moiChekiOnlineClient.getFiscalData(
-                            authorization,
-                            new FiscalDataRequest(key)
-                    )));
+            try {
+                result.add(executeWithToken(authorization ->
+                        moiChekiOnlineClient.getFiscalData(
+                                "Bearer " + token,
+                                new FiscalDataRequest(key)
+                        )));
+            } catch (Exception e) {
+                log.error("Receipt not found key = {}", key, e);
+            }
+
         }
         return result;
     }
