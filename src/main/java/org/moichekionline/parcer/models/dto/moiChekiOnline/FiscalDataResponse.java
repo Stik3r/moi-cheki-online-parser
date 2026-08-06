@@ -28,6 +28,7 @@ public record FiscalDataResponse(
         Double nds10,
         String fnsSite,
         AmountsReceiptNds amountsReceiptNds,
-        String buyerAddress
+        String buyerAddress,
+        ReceiptProperty receiptProperty
 ) {
 }
